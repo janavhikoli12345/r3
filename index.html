@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TY Diploma Freshers Party 🎉</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#ff6b6b;
+      --accent-2:#ffd166;
+      --muted:#94a3b8;
+    }
+    *{box-sizing:border-box}
+    body{font-family:'Inter',system-ui,Arial; margin:0; background:linear-gradient(180deg,#071024 0%, #07172a 60%), var(--bg); color:#e6eef8;}
+    .container{max-width:1100px;margin:40px auto;padding:28px}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+    .badge{display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent-2));padding:8px 14px;border-radius:999px;font-weight:700;color:#091024}
+    h1{font-size: clamp(28px,4.4vw,44px); margin:18px 0 6px; line-height:1.05}
+    p.lead{color:var(--muted);margin:0 0 18px}
+    .card{background:rgba(255,255,255,0.03);padding:18px;border-radius:14px;box-shadow:0 6px 30px rgba(2,6,23,0.6);}
+
+    /* Event details */
+    .event-info{display:flex;flex-direction:column;gap:10px}
+    .info-row{display:flex;align-items:center;gap:12px}
+    .icon{width:46px;height:46px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;font-weight:700}
+    .countdown{display:flex;gap:12px}
+    .countdown .seg{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px 14px;border-radius:10px;text-align:center}
+    .seg strong{display:block;font-size:18px}
+    .buttons{display:flex;gap:12px;margin-top:14px}
+    .btn{padding:12px 16px;border-radius:12px;border:0;cursor:pointer;font-weight:700}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#ff8a80);color:#071024}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent-2)}
+
+    /* Right panel */
+    .poster{border-radius:12px; overflow:hidden; position:relative}
+    .poster img{display:block;width:100%;height:100%;object-fit:cover}
+    .poster .overlay{position:absolute;left:12px;bottom:12px;background:linear-gradient(90deg,var(--accent),var(--accent-2));padding:8px 12px;border-radius:10px;color:#071024;font-weight:800}
+
+    /* Schedule & Gallery */
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+    ul.schedule{list-style:none;padding:0;margin:0}
+    ul.schedule li{padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));margin-bottom:10px}
+
+    .gallery{display:flex;gap:8px;flex-wrap:wrap}
+    .gallery img{width:calc(50% - 4px);border-radius:10px;height:120px;object-fit:cover}
+
+    /* RSVP form */
+    form.rsvp{display:flex;flex-direction:column;gap:10px}
+    input,select,textarea{padding:10px;border-radius:10px;border:0;background:rgba(255,255,255,0.02);color:inherit}
+    input::placeholder{color:var(--muted)}
+    .small{font-size:13px;color:var(--muted)}
+
+    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* responsive */
+    @media (max-width:980px){.hero{grid-template-columns:1fr;}.poster{height:260px}.gallery img{width:calc(33.333% - 6px);height:90px}}
+    @media (max-width:560px){.grid-2{grid-template-columns:1fr}.poster{height:200px}.gallery img{width:calc(50% - 4px)}}
+
+    /* small entrance animation */
+    .fade-in{animation:fadeIn .9s ease both}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <div class="card fade-in">
+        <span class="badge">TY Diploma Freshers • 2025</span>
+        <h1>Welcome Freshers! <span style="color:var(--accent)">"A New Chapter"</span></h1>
+        <p class="lead">Celebrate the start of your final year with music, games, and memories. भरभरून मजा, नवीन मित्र, आणि धमाल रात्री!</p>
+
+        <div class="event-info">
+          <div class="info-row">
+            <div class="icon">📍</div>
+            <div>
+              <div style="font-weight:700">Venue</div>
+              <div class="small">College Auditorium, Main Building</div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="icon">🗓️</div>
+            <div>
+              <div style="font-weight:700">Date & Time</div>
+              <div class="small">Saturday, October 18, 2025 • 6:00 PM onwards</div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="icon">🎵</div>
+            <div>
+              <div style="font-weight:700">Highlights</div>
+              <div class="small">DJ, Live Performances, Fashion Walk, Games & Prizes</div>
+            </div>
+          </div>
+
+          <div style="margin-top:8px">
+            <div style="font-weight:700;margin-bottom:8px">Countdown to Party</div>
+            <div class="countdown" id="countdown">
+              <div class="seg"><strong id="days">--</strong><span class="small">Days</span></div>
+              <div class="seg"><strong id="hours">--</strong><span class="small">Hours</span></div>
+              <div class="seg"><strong id="minutes">--</strong><span class="small">Minutes</span></div>
+              <div class="seg"><strong id="seconds">--</strong><span class="small">Seconds</span></div>
+            </div>
+          </div>
+
+          <div class="buttons">
+            <button class="btn btn-primary" onclick="document.getElementById('rsvpName').scrollIntoView({behavior:'smooth'})">RSVP Now</button>
+            <button class="btn btn-ghost" onclick="openDetails()">More Details</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster fade-in card">
+        <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=abcd" alt="Freshers Poster">
+        <div class="overlay">Theme: Neon Night</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card fade-in">
+        <h3 style="margin-top:0">Event Schedule</h3>
+        <ul class="schedule">
+          <li><strong>6:00 PM</strong> - Arrival & Registration</li>
+          <li><strong>6:30 PM</strong> - Welcome Speech by HOD</li>
+          <li><strong>7:00 PM</strong> - Fresher Introductions</li>
+          <li><strong>7:45 PM</strong> - DJ & Dance Performances</li>
+          <li><strong>8:30 PM</strong> - Fashion Walk</li>
+          <li><strong>9:15 PM</strong> - Games & Prizes</li>
+          <li><strong>10:00 PM</strong> - Closing & Photo Session</li>
+        </ul>
+
+        <h4 style="margin-top:12px">Gallery Preview</h4>
+        <div class="gallery" aria-hidden="false">
+          <img src="https://images.unsplash.com/photo-1520975698513-ecfaef18d6f0?q=80&w=800&auto=format&fit=crop&s=1111" alt="gallery1">
+          <img src="https://images.unsplash.com/photo-1515165562835-caa5a5e3f6b6?q=80&w=800&auto=format&fit=crop&s=2222" alt="gallery2">
+          <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=800&auto=format&fit=crop&s=3333" alt="gallery3">
+          <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=800&auto=format&fit=crop&s=4444" alt="gallery4">
+        </div>
+      </div>
+
+      <div class="card fade-in">
+        <h3 style="margin-top:0">RSVP</h3>
+        <form class="rsvp" onsubmit="handleRSVP(event)">
+          <input id="rsvpName" type="text" placeholder="Your full name" required>
+          <input id="rsvpRoll" type="text" placeholder="Roll number / Class" required>
+          <select id="rsvpGuest">
+            <option value="0">Attending alone</option>
+            <option value="1">+1 Guest</option>
+            <option value="2">+2 Guests</option>
+          </select>
+          <textarea id="rsvpNote" rows="3" placeholder="Any message for organizers (optional)"></textarea>
+          <div style="display:flex;gap:8px;align-items:center">
+            <input type="checkbox" id="agree" required>
+            <label for="agree" class="small">I agree to follow college rules and code of conduct.</label>
+          </div>
+          <button class="btn btn-primary" type="submit">Submit RSVP</button>
+          <div id="rsvpMsg" class="small" style="margin-top:8px;color:var(--accent-2)"></div>
+        </form>
+
+        <h4 style="margin-top:16px">Contact Organizers</h4>
+        <div class="small">Lead Coordinator: Priya (98765 43210)</div>
+        <div class="small">Tech Head: Sameer (91234 56789)</div>
+      </div>
+    </div>
+
+    <footer>
+      Designed with ❤️ for TY Diploma Students • Make it your own — change theme, images and details.
+    </footer>
+  </div>
+
+  <script>
+    // Countdown timer
+    const partyDate = new Date('2025-10-18T18:00:00'); // update date/time here
+    function updateCountdown(){
+      const now = new Date();
+      const diff = partyDate - now;
+      if(diff <= 0){
+        document.getElementById('countdown').innerHTML = '<div class="small">Party is live! 🎉</div>';
+        clearInterval(timer);
+        return;
+      }
+      const days = Math.floor(diff / (1000*60*60*24));
+      const hours = Math.floor((diff / (1000*60*60)) % 24);
+      const minutes = Math.floor((diff / (1000*60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours.toString().padStart(2,'0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2,'0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2,'0');
+    }
+    const timer = setInterval(updateCountdown,1000);
+    updateCountdown();
+
+    // RSVP handler (client-side only) - shows confirmation and logs to console
+    function handleRSVP(e){
+      e.preventDefault();
+      const name = document.getElementById('rsvpName').value.trim();
+      const roll = document.getElementById('rsvpRoll').value.trim();
+      const guest = document.getElementById('rsvpGuest').value;
+      const note = document.getElementById('rsvpNote').value.trim();
+      // In real site: send this to server. Here we only show a confirmation.
+      document.getElementById('rsvpMsg').textContent = `Thank you, ${name}! Your RSVP is recorded.`;
+      console.log('RSVP:', {name, roll, guest, note, time: new Date().toISOString()});
+      // small animation
+      setTimeout(()=>document.getElementById('rsvpMsg').textContent = '',4500);
+      e.target.reset();
+    }
+
+    function openDetails(){
+      alert('For more details contact event coordinators.\nCheck the schedule or RSVP section.');
+    }
+  </script>
+</body>
+</html>
